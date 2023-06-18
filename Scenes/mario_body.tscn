@@ -1,0 +1,127 @@
+[gd_scene load_steps=14 format=3 uid="uid://i7htnk57hhxp"]
+
+[ext_resource type="Script" path="res://Scripts/mario_body_controller.gd" id="1_n1wgg"]
+[ext_resource type="Texture2D" uid="uid://b1jfnqj2qynna" path="res://Sprites/mario/Mario_Idle.png" id="2_fd8u6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbfnb"]
+atlas = ExtResource("2_fd8u6")
+region = Rect2(0, 220, 32, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvso8"]
+atlas = ExtResource("2_fd8u6")
+region = Rect2(0, 275, 32, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ympjj"]
+atlas = ExtResource("2_fd8u6")
+region = Rect2(0, 165, 32, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaeqi"]
+atlas = ExtResource("2_fd8u6")
+region = Rect2(0, 330, 32, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgt5i"]
+atlas = ExtResource("2_fd8u6")
+region = Rect2(0, 110, 32, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tmew"]
+atlas = ExtResource("2_fd8u6")
+region = Rect2(0, 0, 32, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3k5n"]
+atlas = ExtResource("2_fd8u6")
+region = Rect2(0, 385, 32, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35kg2"]
+atlas = ExtResource("2_fd8u6")
+region = Rect2(0, 55, 32, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q0lrb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbfnb")
+}],
+"loop": true,
+"name": &"Idle Down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvso8")
+}],
+"loop": true,
+"name": &"Idle Down_Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ympjj")
+}],
+"loop": true,
+"name": &"Idle Down_Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uaeqi")
+}],
+"loop": true,
+"name": &"Idle Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgt5i")
+}],
+"loop": true,
+"name": &"Idle Right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tmew")
+}],
+"loop": true,
+"name": &"Idle Up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3k5n")
+}],
+"loop": true,
+"name": &"Idle Up_Left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35kg2")
+}],
+"loop": true,
+"name": &"Idle Up_Right",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vffg8"]
+size = Vector3(0.185809, 0.167966, 0.001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2xex6"]
+size = Vector3(0.18229, 0.0879024, 0.001)
+
+[node name="MarioBody" type="CharacterBody3D"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+script = ExtResource("1_n1wgg")
+
+[node name="MarioSprite" type="AnimatedSprite3D" parent="."]
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_q0lrb")
+animation = &"Idle Down"
+
+[node name="MarioHead" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0051575, 0.107168, 0)
+shape = SubResource("BoxShape3D_vffg8")
+disabled = true
+
+[node name="MarioFeet" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, -0.205979, -1.06543e-05)
+shape = SubResource("BoxShape3D_2xex6")

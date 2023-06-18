@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctlgi7vx83lqi"]
+
+[ext_resource type="PackedScene" uid="uid://i7htnk57hhxp" path="res://Scenes/mario_body.tscn" id="1_i6xb6"]
+[ext_resource type="Texture2D" uid="uid://be17ftwaevpa2" path="res://Sprites/GrassBox.png" id="2_rb76e"]
+[ext_resource type="PackedScene" uid="uid://c33ganhd85b6h" path="res://Scenes/Coin_Object.tscn" id="3_x3r0g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8btok"]
+size = Vector3(15, 1, 15)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1p05x"]
+albedo_texture = ExtResource("2_rb76e")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bv462"]
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.834021, 0.551733, 0, -0.551733, 0.834021, -2, 9.80197, 15.0604)
+
+[node name="MarioBody" parent="." instance=ExtResource("1_i6xb6")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 2, 0)
+
+[node name="Camera3D" type="Camera3D" parent="MarioBody"]
+transform = Transform3D(0.4, 0, 0, 0, 0.379103, 0.127597, 0, -0.127597, 0.379103, 0, 0.528295, 1.12)
+fov = 90.0
+
+[node name="TestPlatforms" type="Node3D" parent="."]
+
+[node name="Platform1" type="Node3D" parent="TestPlatforms"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="TestPlatforms/Platform1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.603817, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestPlatforms/Platform1/RigidBody3D"]
+shape = SubResource("BoxShape3D_8btok")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestPlatforms/Platform1/RigidBody3D"]
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_1p05x")
+mesh = SubResource("BoxMesh_bv462")
+
+[node name="Platform2" type="Node3D" parent="TestPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.18056, -7)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="TestPlatforms/Platform2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.603817, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestPlatforms/Platform2/RigidBody3D"]
+shape = SubResource("BoxShape3D_8btok")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestPlatforms/Platform2/RigidBody3D"]
+transform = Transform3D(15, 0, 0, 0, 1, 0, 0, 0, 15, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_1p05x")
+mesh = SubResource("BoxMesh_bv462")
+
+[node name="Coins" type="Node3D" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource("3_x3r0g")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 1.91084, 1.70907, 0.146058)
